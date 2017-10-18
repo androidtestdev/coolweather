@@ -10,6 +10,7 @@ import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.annotation.IntDef;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.coolweather.android.gson.Weather;
 import com.coolweather.android.util.HttpUtil;
@@ -34,6 +35,7 @@ public class AutoUpdateService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.d("Test","Service onStartCommand");
         updateWeather();
         updateBingPic();
         AlarmManager manager=(AlarmManager)getSystemService(ALARM_SERVICE);

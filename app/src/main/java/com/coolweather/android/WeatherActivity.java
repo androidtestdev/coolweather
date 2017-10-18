@@ -118,6 +118,8 @@ public class WeatherActivity extends AppCompatActivity {
         });
 
 
+        Intent intent=new Intent(WeatherActivity.this, AutoUpdateService.class);
+       startActivity(intent);
     }
 
     /**
@@ -145,9 +147,9 @@ public class WeatherActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) throws IOException {
 
                 final String responceText=response.body().string();
-                Log.d("Test","responceText: "+responceText);
+                Log.d("Test",responceText);
                 final Weather weather=Utility.handleWeatherResponse(responceText);
-                Log.d("Test","weather: "+weather.status);
+
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -156,8 +158,6 @@ public class WeatherActivity extends AppCompatActivity {
                             editor.putString("weather",responceText);
                             editor.apply();
                             showWeatherInfo(weather);
-                            Intent intent=new Intent(WeatherActivity.this, AutoUpdateService.class);
-                            startActivity(intent);
                         }else {
                             Toast.makeText(WeatherActivity.this,"获取天气信息失败 ",Toast.LENGTH_SHORT).show();
                         }
@@ -207,6 +207,8 @@ public class WeatherActivity extends AppCompatActivity {
         carWashText.setText(carWash);
         sportText.setText(sport);
         weatherLayout.setVisibility(View.VISIBLE);
+
+
 
     }
 
